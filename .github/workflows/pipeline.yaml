@@ -3,7 +3,6 @@ name: Assignment 6 pipeline
 on:
   push:
     branches:
-      - main
       - '*'
 
 jobs:
@@ -37,12 +36,13 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Run training
-        run: python train.py
+      - name: Run training (capture logs)
+        run: |
+          python train.py > output.log 2>&1
 
       - name: Save error logs
         if: failure()
-        run: echo "Training failed. Check logs." > error_logs.txt
+        run: cp output.log error_logs.txt
 
       - name: Upload logs
         if: failure()
