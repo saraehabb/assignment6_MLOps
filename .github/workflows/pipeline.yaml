@@ -21,6 +21,7 @@ jobs:
     runs-on: ubuntu-latest
 
     if: >
+      success() &&
       github.ref == 'refs/heads/main' &&
       contains(github.event.head_commit.message, '[run-train]')
 
