@@ -17,5 +17,5 @@ y_pred = model.predict(X)
 acc = accuracy_score(y, y_pred)
 print(f"Training done. Accuracy: {acc:.2f}")
 
-if acc < 0.95:
+if acc < 1:
     raise Exception("Model accuracy too low!")
